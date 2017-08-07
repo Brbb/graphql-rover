@@ -6,7 +6,12 @@ A [GraphQL](http://graphql.org/) schema viewer.
 **Rover** generates a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query, displaying nodes as [Vue.js](https://vuejs.org/) components using [D3.js](https://d3js.org/) to build the graph.
 
 ## Quick start
+Description + video
+1. Setup the endpoint
+2. Re-arrange nodes
+3. Select to zoom and inspect a type
 
+## Run
 ### Option 1:
 `git clone` the [repo](https://github.com/Brbb/graphql-rover.git) anywhere, run locally `path-to-graphql-rover/graphql-rover/index.html` and follow the quickstart steps. There's no need to keep Rover in the same path of your database, or on a server.
 
