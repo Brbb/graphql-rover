@@ -222,8 +222,8 @@ var App = new Vue({
     dialogFormVisible: false,
     httpVerbs: ['GET','POST'],
     form: {
-      url: 'https://api.github.com/graphql',
-      auth: 'Bearer 1dca7cb7ec2d785bbc5e56bf0c024756adb63a3b',
+      url: '',
+      auth: '',
       verb: 'GET',
       contentType: 'application/graphql',
       useIntrospectionQuery: true,
@@ -251,14 +251,15 @@ var App = new Vue({
         
       },
       requestGraphQL(){
-      this.fullscreenLoading = true;
       var auth = this.form.auth;
       var contentType = this.form.contentType;
       var bodyData = '';
       if(this.form.useIntrospectionQuery && this.form.verb == 'POST')
         bodyData = introspectionQuery;
 
-      if(this.form.url != null){
+      if(this.form.url != null && this.form.url != ''){
+        this.fullscreenLoading = true;
+
       $.ajax({
           url: this.form.url,
           type: this.form.verb,
@@ -282,6 +283,12 @@ var App = new Vue({
             });
           });
       }
+        else
+          {
+            this.$message.error({
+                message: 'Endpoint not configured!'
+            });
+          }
       }
   },
   mounted() {
