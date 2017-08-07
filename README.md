@@ -1,4 +1,4 @@
-![GraphQL Rover](./img/logo.png)
+![]({{site.baseurl}}/./img/graphql-128.png) ![GraphQL Rover](./img/logo.png)
 
   
 # graphql-rover
