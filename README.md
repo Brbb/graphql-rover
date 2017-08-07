@@ -51,7 +51,6 @@ Download the Electron App and follow the quickstart steps.
 - [x] Configure GraphQL endpoint
 - [ ] Offline schema (paste introspection result + libraries included)
 - [ ] Electron app
-- [ ] Docker container
 
 ## Tech Stack
 
