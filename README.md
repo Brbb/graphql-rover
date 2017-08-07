@@ -69,5 +69,5 @@ Rover is built with pure javascript libraries to avoid mixed or _language_-to-ja
 
 ## Electron
 
-
+A OS X electron app exists, but currently it's not complete. The bundle will be released as soon as possible with a Windows and Linux package.
 
