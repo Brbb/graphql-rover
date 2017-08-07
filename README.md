@@ -3,7 +3,6 @@
 # graphql-rover
 A [GraphQL](http://graphql.org/) + [Vue.js](https://vuejs.org/) schema viewer. **Rover** generates a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query.
 
-
 ## Quick start
 
 ### Option 1:
@@ -12,17 +11,28 @@ A [GraphQL](http://graphql.org/) + [Vue.js](https://vuejs.org/) schema viewer. *
 ### Option 2:
 Download the Electron App and follow the quickstart steps.
 
-
 ## Features
-- [ ] Drag nodes
-- Pan & Zoom
-- Zoom on selection
-- Type Documentation
-- 
+- [x] Drag nodes
+- [x] Pan & Zoom
+- [x] Zoom on selection
+- [x] Type Documentation
+- [x] Type & field search
+- [x] Configure GraphQL endpoint
+- [ ] Offline schema (paste introspection result + libraries included)
+- [ ] Electron app
+- [ ] Docker container
 
 ## Tech Stack
+
+GraphQL
+Vue + Vuex + Vue Elements (Nodes, storage, event management)
+JQuery
+Bootstrap
+D3 + Dagre (graph theory and visualization)
+
+Note: no Graphviz or non-pure libraries
+
 ## Electron
-## To-Do
 
 
 
