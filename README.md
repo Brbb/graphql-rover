@@ -56,6 +56,7 @@ Run the GraphQL Rover.app (OSX electron package only)
 - [x] Interface / Enumerable / Types easy identification
 - [x] Relationships edges with UML-like semantic
 - [x] Configure GraphQL endpoint
+- [x] No code to write (but a module could be interesting)
 - [ ] Offline schema (paste introspection result + libraries included)
 - [ ] Electron app
 
