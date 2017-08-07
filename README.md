@@ -1,17 +1,21 @@
+# GraphQL Rover
+
 <p align="center">
   <img src="./img/logo.png" width="150">
 </p>
 
+<p align="center">
   [![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)](http://forthebadge.com)
   [![forthebadge](http://forthebadge.com/images/badges/made-with-vue.svg)](http://forthebadge.com)
   [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+  </p>
 
 
   
-# graphql-rover
-A [GraphQL](http://graphql.org/) schema viewer.
+## Intro
+**GraphQL Rover** is a [GraphQL](http://graphql.org/) schema viewer.
 
-**Rover** generates a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query, displaying nodes as [Vue.js](https://vuejs.org/) components using [D3.js](https://d3js.org/) to build the graph.
+Generate a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query, displaying nodes as [Vue.js](https://vuejs.org/) components using [D3.js](https://d3js.org/) to build the graph.
 
 ## Quick start
 Description + video
