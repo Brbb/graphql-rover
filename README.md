@@ -19,6 +19,8 @@ Download the Electron App and follow the quickstart steps.
 - [x] Zoom on selection
 - [x] Type Documentation
 - [x] Type & field search
+- [x] Interface / Enumerable / Types easy identification
+- [x] Relationships edges with UML-like semantic
 - [x] Configure GraphQL endpoint
 - [ ] Offline schema (paste introspection result + libraries included)
 - [ ] Electron app
