@@ -9,6 +9,9 @@ A [GraphQL](http://graphql.org/) schema viewer.
 Description + video
 
 1. Setup the endpoint
+
+![configure](https://user-images.githubusercontent.com/2746209/29014048-15897c86-7b6d-11e7-9e95-278ccb78819c.gif)
+
 2. Re-arrange nodes
 
 ![drag](https://user-images.githubusercontent.com/2746209/29013947-5ca3eb48-7b6c-11e7-9c5c-499b3d7a071d.gif)
