@@ -1,4 +1,5 @@
 <p align="center">
+  <img width="100" src="https://vuejs.org/images/logo.png" style="max-width:100%;">
   <img src="./img/logo.png" width="100">
 </p>
   
