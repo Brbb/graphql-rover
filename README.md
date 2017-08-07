@@ -1,7 +1,8 @@
 ![GraphQL Rover](./img/logo.png)
 
 # graphql-rover
-A [GraphQL](http://graphql.org/) + [Vue.js](https://vuejs.org/) schema viewer. **Rover** generates a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query.
+A [GraphQL](http://graphql.org/) schema viewer.
+**Rover** generates a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query, displaying nodes as [Vue.js](https://vuejs.org/) components using [D3.js](https://d3js.org/) to build the graph.
 
 ## Quick start
 
