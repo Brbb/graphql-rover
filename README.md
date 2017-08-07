@@ -8,7 +8,7 @@
   <img src="http://forthebadge.com/images/badges/uses-js.svg">
   <img src="http://forthebadge.com/images/badges/made-with-vue.svg">
   <img src="http://forthebadge.com/images/badges/built-with-love.svg">
-  </p>
+</p>
 
 
   
