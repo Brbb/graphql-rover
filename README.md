@@ -39,8 +39,10 @@ Description + video
 
 ### Option 2:
 Run as Electron app and follow the quickstart steps:
-> cd graphql-rover/
-> electron .
+``` shell
+$ cd graphql-rover/
+$ electron .
+```
 
 ## Features
 - [x] Drag nodes
