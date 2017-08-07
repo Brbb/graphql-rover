@@ -1,7 +1,7 @@
 # GraphQL Rover
 
 <p align="center">
-  <img src="./img/logo.png" width="150">
+  <img src="./img/logo.png" width="200">
 </p>
 
 <p align="center">
