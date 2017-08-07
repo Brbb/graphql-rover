@@ -1,4 +1,4 @@
-![]({{site.baseurl}}/graphql-rover/img/logo.png)
+![]({{site.baseurl}}/logo.png)
 
 # graphql-rover
 A GraphQL + Vue.js schema viewer
