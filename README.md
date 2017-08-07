@@ -7,9 +7,16 @@ A [GraphQL](http://graphql.org/) schema viewer.
 
 ## Quick start
 Description + video
+
 1. Setup the endpoint
 2. Re-arrange nodes
-3. Select to zoom and inspect a type
+
+![drag](https://user-images.githubusercontent.com/2746209/29013947-5ca3eb48-7b6c-11e7-9c5c-499b3d7a071d.gif)
+
+3. Select to zoom and inspect a type or use the search bar
+
+![search](https://user-images.githubusercontent.com/2746209/29013948-5d0d0a10-7b6c-11e7-92e2-6ae26965b424.gif)
+
 
 ## Run
 ### Option 1:
