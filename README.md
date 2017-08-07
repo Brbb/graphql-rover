@@ -38,7 +38,9 @@ Description + video
 `git clone` the [repo](https://github.com/Brbb/graphql-rover.git) anywhere, run locally `path-to-graphql-rover/graphql-rover/index.html` and follow the quickstart steps. There's no need to keep Rover in the same path of your database, or on a server.
 
 ### Option 2:
-Download the Electron App and follow the quickstart steps.
+Run as Electron app and follow the quickstart steps:
+> cd graphql-rover/
+> electron .
 
 ## Features
 - [x] Drag nodes
