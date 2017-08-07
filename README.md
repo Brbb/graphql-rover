@@ -54,13 +54,12 @@ Download the Electron App and follow the quickstart steps.
 
 ## Tech Stack
 
-GraphQL
-Vue + Vuex + Vue Elements (Nodes, storage, event management)
-JQuery
-Bootstrap
-D3 + Dagre (graph theory and visualization)
+Rover is built with pure javascript libraries to avoid mixed or _language_-to-javascript solutions:
 
-Note: no Graphviz or non-pure libraries
+- [GraphQL](http://graphql.org/): the introspection query is actually what is really used by Rover to get the schema topology. On further releases it could be possible to query the data of the selected type.
+- [Dagre-d3](https://github.com/cpettitt/dagre-d3): basically the core of the graph schema building system, replaces graphviz and offers a pure javascript alternative.
+- [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/en/intro.html) + [Element](http://element.eleme.io/#/): D3 nodes require a html label, and Vue can easily provide a template adaptable to any type retrieved. Vuex stores data and manages the state while Element provides a pleasant UI library.
+
 
 ## Electron
 
