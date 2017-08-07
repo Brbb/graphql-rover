@@ -50,6 +50,7 @@ Run the GraphQL Rover.app (OSX electron package only)
 - [x] Drag nodes
 - [x] Pan & Zoom
 - [x] Zoom on selection
+- [x] Navigate clicking on Type-links inside the node or the documentation panel
 - [x] Type Documentation
 - [x] Type & field search
 - [x] Interface / Enumerable / Types easy identification
