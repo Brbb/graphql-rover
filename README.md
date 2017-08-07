@@ -1,11 +1,5 @@
 <p align="center">
-  <img width="100" src="https://github.com/facebook/graphql/blob/master/resources/GraphQL%20Logo.png" style="max-width:100%;"> + 
- <img width="100" src="https://vuejs.org/images/logo.png" style="max-width:100%;"> + 
- <img width="100" src="  https://github.com/d3/d3-logo/blob/master/d3.png" style="max-width:100%;">
-
-=  
-  
-  <img src="./img/logo.png" width="100">
+  <img src="./img/logo.png" width="150">
 </p>
   
 # graphql-rover
