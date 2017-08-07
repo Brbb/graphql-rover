@@ -1,6 +1,5 @@
-<p align="center">
 ![GraphQL Rover](./img/logo.png)
-</p>
+
   
 # graphql-rover
 A [GraphQL](http://graphql.org/) schema viewer.
