@@ -14,7 +14,7 @@ Download the Electron App and follow the quickstart steps.
 
 
 ## Features
-- [] Drag nodes
+- [ ] Drag nodes
 - Pan & Zoom
 - Zoom on selection
 - Type Documentation
