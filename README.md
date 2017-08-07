@@ -56,7 +56,7 @@ Run the GraphQL Rover.app (OSX electron package only)
 - [x] Interface / Enumerable / Types easy identification
 - [x] Relationships edges with UML-like semantic
 - [x] Configure GraphQL endpoint
-- [x] No code to write (but a module could be interesting)
+- [x] No code to write (but a module/library could be interesting)
 - [ ] Offline schema (paste introspection result + libraries included)
 - [ ] Electron app
 
@@ -74,6 +74,7 @@ Rover is built with pure javascript libraries to avoid mixed or _language_-to-ja
 An OS X electron app exists, but currently it's not complete. The bundle will be released as soon as possible with a Windows and Linux package.
 
 ## To-Dos
+- [ ] Single edge with double arrowhead to limit the number of lines and improve readability
 - [ ] NPM module
 - [ ] Live Demo
 - [ ] Test Test Test Test
