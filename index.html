@@ -1,0 +1,235 @@
+<!doctype html>
+
+<meta charset="utf-8">
+<title>GraphQL Rover</title>
+<link rel="icon" type="image/png" sizes="32x32" href="img/logo.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<script src="js/d3.min.js" charset="utf-8"></script>
+<script src="js/dagre-d3.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="https://unpkg.com/vue"></script>-->
+<script src="vue/vue.min.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+<script src="https://unpkg.com/element-ui@1.3.7/lib/index.js"></script>
+<script src="js/utils.js"></script>
+<script src="data/graphQLQuery.js"></script>
+<!--<script src="data/githubdata.js"></script>-->
+
+<script>if (window.module) module = window.module;</script>
+
+<main id="doc_root">
+  <div id="gqle" class="gql-explorer" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="Loading GraphQL schema...">
+    <div class="doc-panel">
+      <div class="contents">
+        <div class="title">
+          <img src="img/logo.svg" width="32" height="32"></img>
+          <span style="font-weight: 400;">GraphQL</span><span> Rover</span>
+          <el-button class="el-button-gqlr float-right" icon="setting" size="small" @click="dialogFormVisible = true"></el-button>
+        </div>
+        <div>
+          <el-autocomplete class="inline-input" icon="search" v-model="autocompleteState" :fetch-suggestions="querySearch" placeholder="Search Type or Field"
+            @select="handleSelect" :on-icon-click="handleSearchIconClick" custom-item="gqlc-autocomplete-item" popper-class="gqlc-autocomplete-style">
+          </el-autocomplete>
+        </div>
+        <component :is="dataView" vbind:doc="store.getters.getTableDocumentation"></component>
+      </div>
+    </div>
+    <graph-panel></graph-panel>
+    <el-dialog title="Remote database source configuration" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="Database URL">
+          <el-input v-model="form.url" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="Authorization">
+          <el-input v-model="form.auth"></el-input>
+        </el-form-item>
+        <el-form-item label="Content Type">
+          <el-input v-model="form.contentType"></el-input>
+        </el-form-item>
+        <el-form-item label="HTTP Verb">
+          <el-select v-model="form.verb" placeholder="HTTP Method">
+            <el-option v-for="verb in httpVerbs" :key="verb" :label="verb" :value="verb"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox v-model="form.useIntrospectionQuery">Use Introspection Query</el-checkbox>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">Cancel</el-button>
+            <el-button type="primary" @click="requestGraphQL(); dialogFormVisible = false">Confirm</el-button>
+          </span>
+    </el-dialog>
+  </div>
+</main>
+
+<script src="vue/components.js"></script>
+<script src="js/zoom.js"></script>
+<script id="core">
+  
+  var svg, render, g;
+
+
+  function setupGraph() {
+    svg = d3.select("svg"),
+      svgGroup = svg.append("g"),
+      zoom = d3.behavior.zoom().on("zoom", function () {
+        svgGroup.attr("transform", "translate(" + d3.event.translate + ")" +
+          "scale(" + d3.event.scale + ")");
+      });
+    svg.call(zoom);
+
+    g = new dagreD3.graphlib.Graph()
+      .setGraph({ rankDir: 'LR', ranksep: 80, edgesep: 30, nodesep: 20 })
+      .setDefaultEdgeLabel(function () {
+        return {};
+      });
+
+    render = new dagreD3.render();
+  }
+
+  function resetGraph() {
+    d3.select("svg").selectAll("*").remove();
+    setupGraph();
+  }
+
+  //if (jsonData != null && jsonData.types != null) {
+  // GRAPH FUNCTION BLOCK
+  function loadGraph() {
+    console.log('loading graph...');
+
+    store.getters.getGraphQLData.types.forEach(function (type) {
+
+      if (!isBaseEntity(type.name)) {
+        var component = new TableComponent({
+          propsData: {
+            header: type.name,
+            type: type
+          }
+        }).$mount();
+
+        g.setNode((type.name), {
+          labelType: "html",
+          padding: 0,
+          margin: 0,
+          shape: "rect"
+        });
+        g.node(type.name).label = component.$el;
+
+
+        if (type.fields != null) {
+          type.fields.forEach(function (field) {
+
+            var fieldTypeName = getNestedType(field.type);
+            if (fieldTypeName != null && !isBaseEntity(fieldTypeName))
+              g.setEdge(type.name, fieldTypeName);
+
+
+            // FIX the label position
+            if (field.args != null) {
+              field.args.forEach(function (arg) {
+
+                var argTypeName = getNestedType(arg.type);
+                if (argTypeName != null && !isBaseEntity(argTypeName))
+                  g.setEdge(type.name, argTypeName, {
+                    //label: arg.name,
+                    //labelpos: 'l',
+                    //labeloffset: 2,
+                    arrowhead: 'vee',
+                    class: 'argument-edge'
+                  });
+              });
+            }
+          });
+        }
+
+        if (type.inputFields != null) {
+          type.inputFields.forEach(function (inputField) {
+
+            var inputFieldTypeName = getNestedType(inputField.type);
+            if (inputFieldTypeName != null && !isBaseEntity(inputFieldTypeName))
+              g.setEdge(type.name, inputFieldTypeName);
+          });
+        }
+
+        // for the possible type we set the opposite direction of a normal relationship
+        // since INTERFACE and UNION list the types which can 'implement' or 'being represented'
+        // and not a field with a reference/connection
+
+        if (type.possibleTypes != null) {
+          type.possibleTypes.forEach(function (possibleType) {
+
+            if (possibleType.name != null) {
+              g.setEdge(possibleType.name, type.name, { class: 'generalization-edge', arrowheadStyle: 'fill: none; stroke-dasharray: 1 0;' });
+            }
+          });
+        }
+      }
+    });
+
+    //--------
+
+    g.edges().forEach(function (e) {
+      var edge = g.edge(e.v, e.w);
+      edge.lineInterpolate = 'basis';
+    });
+
+    render(d3.select("svg g"), g);
+
+    //FIX: sometimes the table inside the node has a different width after rendering. The fix is temporary.
+    g.nodes().forEach(function (n) {
+      var adjustedWidth = g.node(n).elem.firstChild.width.baseVal.value;
+      $("#" + n).width(adjustedWidth);
+    });
+
+    svg.selectAll("g.node").on("click", function (id) {
+      d3.event.preventDefault();
+      var _node = g.node(id);
+      goToSelected(_node);
+    });
+
+    svg.selectAll("g.edgePath").on("click", function (id) {
+      d3.event.preventDefault();
+      var _edge = g.edge(id);
+      highlightRelationship(_edge);
+    });
+
+    svg.attr("width", $("#graph-panel").width());
+    svg.attr("height", $("#graph-panel").height());
+
+    d3.behavior.zoom().on("zoom", function () {
+      interpolateZoom(d3.event.translate, d3.event.scale);
+    });
+
+    setInitialPositionAndZoom();
+
+    initDragCapabilities(g, svg);
+
+    $('#svg-canvas').on('mousedown', function (event) {
+
+      mouseDownX = event.clientX;
+      mouseDownY = event.clientY;
+    });
+  }
+
+  function goToSelected(d) {
+    reset();
+    requestAnimationFrame(function () {
+      zoomToSelected(d);
+    });
+
+    setSelected(d);
+  }
+
+
+  var mouseDownX = -1;
+  var mouseDownY = -1;
+
+</script>

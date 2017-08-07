@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400");
+@import url("https://unpkg.com/element-ui@1.3.7/lib/theme-default/index.css");
+
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    }
+
+#doc_root {
+    height: 100%;
+    position: relative;
+}
+
+.doc-panel {
+    width: 380px;
+    min-width: 380px;
+    height: 100%;
+    background: rgb(53,59,88);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+.contents{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background:white;
+    color: rgb(142,55,235);
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 0 10px 3px rgba(0,0,0,.1);
+    height: 100%;
+    padding: 20px;
+    font-family: 'Roboto Condensed', monospace;
+    font-weight: 100;
+}
+
+.type-explorer-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 15px;
+    padding-top: 15px;
+    overflow-y: auto;
+}
+
+.float-right{
+  float: right;
+}
+
+.fields-label{
+  -webkit-font-feature-settings: "c2sc";
+  font-feature-settings: "c2sc";
+  font-variant: small-caps;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 -15px 10px 0;
+  border-bottom: 1px solid #f5edff;
+}
+
+.doc-field{
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  font-size: 13px;
+  color: black;
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.doc-field-description{
+  color: lightslategray;
+  font-size: 12px;
+}
+
+.gql-explorer{
+    font-size: 14px;
+    font-family: 'Inconsolata', monospace;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+}
+
+.title-area {
+    padding: 0 10px;
+}
+
+.svg-panel{
+    height: 100%;
+    width: 100%;
+    max-width: calc(100vw - 320px);
+    max-height: 100vh;
+}
+
+.zoom-btn-control{
+    background: rgb(53,59,88);
+    color: white;
+}
+
+.fixed-panel-head {
+  min-height: 40px;
+  max-height: 40px;
+}
+.fixed-panel-foot {
+  padding-top: 0px;
+}
+
+.left-panel-container{
+  padding: 0px;
+  margin: 0px;
+  height: 90vh;
+}
+
+.left-panel {
+  background: black;
+  border-left: 2px solid black;
+  min-height: 100%;
+}
+
+.node g div {
+  width: auto;
+  height: auto;
+  color: #000;
+}
+
+.edgePath path {
+  stroke: grey;
+  stroke-width: 1.5px;
+}
+
+.panel{
+    height: 100vh;
+    width: 100vw;
+    margin: 20px;
+}
+
+text {
+  font-weight: 100;
+  font-family: 'Inconsolata', monospace;
+  font-size: 15px;
+}
+.node rect {
+  stroke: #333;
+  fill: #fff;
+  stroke-width: 1.5px;
+}
+table {
+  border-spacing: 0;
+  text-align: left;
+}
+table td {
+  padding: 7px;
+}
+
+table tr {
+  background-color: white;
+  font-weight: 300;
+}
+
+table tr:nth-child(even) {
+    background-color: #f5edff;
+}
+
+table tr:first-child {
+  background: rgb(53,59,88);
+  font-size: 14px;
+  font-weight: 300;
+  color: white;
+}
+
+.interface{
+  background: hotpink;
+}
+
+.union{
+  background: red;
+  font-style: italic;
+}
+
+.enum{
+  background: green;
+}
+
+.deprecated{
+  text-decoration: line-through;
+}
+
+.doc-deprecated-field-description{
+  color: red;
+  font-size: 12px;
+}
+
+.interface-edge{
+  stroke-dasharray: 10 10;
+}
+
+.title {
+  font-weight: 300;
+  font-family: 'Roboto Condensed';
+  font-size: 22px;
+}
+
+.description-box{
+  margin-top:5px;
+  margin-bottom: 20px;
+  color: lightslategray;
+}
+
+.type-link{
+  font-size: 13px;
+  color: #CA9800;;
+}
+
+.kind{
+  font-size: 13px;
+  color:#B11A04;
+}
+
+.active{
+  outline: 3px solid blue;
+}
+
+.related{
+  outline: 2px solid green;
+}
+
+.related-field{
+  background: lightgreen;
+}
+
+.field-name{
+  color: #1F61A0;
+}
+
+.args-group{
+  font-style: normal;
+}
+
+.argument-edge{
+  color: red;
+}
+
+.generalization-edge{
+stroke-dasharray: 5 5;
+}
+
+.inline-input{
+  display:block;
+  margin-top: 10px;
+}
+
+.el-select {
+    width: 75px;
+  }
+
+.gqlc-autocomplete-style{
+  font-family: 'Roboto Condensed';
+  font-weight: 300;
+}
+
+.gqlc-autocomplete-style > li{
+    text-align: left;
+}
+
+.gqlc-autocomplete-style .value {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0px;
+}
+
+.gqlc-autocomplete-style .item-type {
+        font-size: 12px;
+        color: #b4b4b4;
+        float: right;
+}
+
+.gqlc-autocomplete-style .parent-type {
+  float: right;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #B11A04;
+}
+
+.el-button-gqlr{
+  color: #8e37eb;
+  background-color: transparent;
+  border-color: #8e37eb;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}

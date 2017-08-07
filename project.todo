@@ -1,0 +1,33 @@
+TODO
+✔ @today Fields in the table -> component @done (6/30/2017, 4:03:25 PM)
+✔ @high Description of the tables on the side on click @done (7/4/2017, 10:59:35 AM)
+✔ @high Description of the fields @done (7/4/2017, 10:59:38 AM)
+✔ Zoom buttons @done (7/11/2017, 2:27:08 PM)
+✔ Fix zoom initial position @done (7/11/2017, 2:27:20 PM)
+✔ Fix panel @done (7/4/2017, 5:15:48 PM)
+✔ Highglight selected node, neighbors and edges @done (7/4/2017, 5:16:48 PM)
+✔ @high Recursive exploration of LIST in case of LIST[LIST[LIST[...]]]; @done (7/7/2017, 9:44:26 AM)
+✔ @low  interfaces and union :: change edge stroke!!! @done (7/13/2017, 11:19:54 AM)
+
+✔ @critical Fix the load documentation in the .type-link @done (7/13/2017, 11:19:18 AM)
+✔ Fix comma in args @done (7/13/2017, 3:14:59 PM)
+✔ Search fields @done (7/17/2017, 1:15:26 PM)
+✔ @low Searchbox @done (7/14/2017, 12:56:35 PM)
+
+
+ENVIRONMENT
+✔ @high Type parameter -> LINE #88 index.html @done (8/1/2017, 6:41:25 PM)
+✔ @high Type navigation (eg. go to type on label click, scale and traslate) @done (8/2/2017, 3:09:42 PM)
+☐ @low Biderectional arrows for double relationship
+☐ Open selected graph entities in another window to keep the graph view of interest compact
+
+GRAPHQL
+☐ Add/Edit table (mutations?)
+
+DATA
+✔ @high Load JSON ajax (Settings of the api endpoint) @done (8/1/2017, 6:41:43 PM)
+✔ @high Fix the rendering of the labels when the graph get reloaded @done (8/3/2017, 3:54:31 PM)
+☐ Import / Export JSON
+
+EXTRA
+☐ Export as PNG
