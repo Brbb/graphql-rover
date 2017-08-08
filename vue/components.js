@@ -222,9 +222,9 @@ var App = new Vue({
     dialogFormVisible: false,
     httpVerbs: ['GET','POST'],
     form: {
-      url: '',
+      url: 'http://graph.pokeql.win/?',
       auth: '',
-      verb: 'GET',
+      verb: 'POST',
       contentType: 'application/graphql',
       useIntrospectionQuery: true,
     },
