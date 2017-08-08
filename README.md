@@ -17,6 +17,8 @@
 
 Generate a navigable representation of the underlying schema through the [introspection](http://graphql.org/learn/introspection/) query, displaying nodes as [Vue.js](https://vuejs.org/) components using [D3.js](https://d3js.org/) to build the graph.
 
+Check the [Demo](https://brbb.github.io/graphql-rover/) based on the _GraphQL Pokemon API_, allow `HTTP` scripts execution or change the endpoint from the side panel.
+
 ## Quick start
 Description + video
 
