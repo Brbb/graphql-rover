@@ -40,6 +40,7 @@ function initDragCapabilities(g,svg){
 
     function dragstart(d) {
         d3.event.sourceEvent.stopPropagation();
+        d3.event.sourceEvent.bubbles=false;
     }
 
     function dragmove(d) {
