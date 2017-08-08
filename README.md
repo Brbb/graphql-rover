@@ -78,6 +78,6 @@ An OS X electron app exists, but currently it's not complete. The bundle will be
 ## To-Dos
 - [ ] Single edge with double arrowhead to limit the number of lines and improve readability
 - [ ] NPM module
-- [ ] Live Demo
+- [x] Live Demo
 - [ ] Test Test Test Test
 - [ ] CI
