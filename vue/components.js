@@ -272,6 +272,12 @@ var App = new Vue({
              loadGraph();
              App.fullscreenLoading = false;
             },
+            error: function (jqXHR, textStatus, errorThrown){
+              App.fullscreenLoading = false;
+              App.$message.error({
+                message: errorThrown
+            });
+            },
           beforeSend: function (xhr) {
               xhr.setRequestHeader("Authorization", auth);
               xhr.setRequestHeader("Content-Type",contentType);
