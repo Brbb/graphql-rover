@@ -277,12 +277,8 @@ var App = new Vue({
         }).fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;
           App.$message.error({
-            message: errorThrown
+            message: textStatus+':'+errorThrown
           });
-        }).always(function (jqXHR, textStatus) {
-          if (textStatus != "success") {
-            alert("Error: " + jqXHR.statusText);
-          }
         });
       }
       else {
