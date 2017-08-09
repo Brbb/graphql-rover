@@ -42,9 +42,9 @@
       </div>
     </div>
     <graph-panel></graph-panel>
-    <el-dialog title="Remote database source configuration" :visible.sync="dialogFormVisible">
+    <el-dialog title="Endpoint configuration" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="Database URL">
+        <el-form-item label="GraphQL Endpoint (url)">
           <el-input v-model="form.url" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="Authorization">
