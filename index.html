@@ -7,6 +7,7 @@
 
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
+<script src="data/settings.js"></script>
 <script src="js/d3.min.js" charset="utf-8"></script>
 <script src="js/dagre-d3.min.js"></script>
 <script src="js/jquery.min.js"></script>
@@ -44,14 +45,25 @@
     <graph-panel></graph-panel>
     <el-dialog title="Endpoint configuration" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="GraphQL Endpoint (url)">
-          <el-input v-model="form.url" auto-complete="off"></el-input>
+        <el-form-item>
+          <el-select v-model="form.endpoint" placeholder="Endpoint name">
+            <el-option v-for="endpoint in settings.endpoints" :key="endpoint" :label="endpoint.name" :value="endpoint"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="Endpoint url">
+          <el-input v-model="form.endpoint.url" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="Authorization">
           <el-input v-model="form.auth"></el-input>
         </el-form-item>
+        <el-form-item label="Accept">
+          <el-input v-model="form.accept"></el-input>
+        </el-form-item>
         <el-form-item label="Content Type">
           <el-input v-model="form.contentType"></el-input>
+        </el-form-item>
+        <el-form-item label="Data Type (Body)">
+          <el-input v-model="form.dataType"></el-input>
         </el-form-item>
         <el-form-item label="HTTP Verb">
           <el-select v-model="form.verb" placeholder="HTTP Method">

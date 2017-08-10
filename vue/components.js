@@ -220,11 +220,14 @@ var App = new Vue({
     dialogFormVisible: false,
     httpVerbs: ['GET', 'POST'],
     form: {
-      url: 'http://graph.pokeql.win/?',
+      endpoint: settings.endpoints[0],
+      //url: settings.endpoints[0].url,
       auth: '',
       verb: 'POST',
+      accept: '*/*',
       contentType: 'application/graphql',
       useIntrospectionQuery: true,
+      dataType: '',
     },
   },
   components: {
@@ -251,17 +254,18 @@ var App = new Vue({
     requestGraphQL() {
       var auth = this.form.auth;
       var contentType = this.form.contentType;
+      var accept = this.form.accept;
       var bodyData = '';
       if (this.form.useIntrospectionQuery && this.form.verb == 'POST')
         bodyData = introspectionQuery;
 
-      if (this.form.url != null && this.form.url != '') {
+      if (this.form.endpoint != null && this.form.endpoint.url != '') {
         this.fullscreenLoading = true;
 
         $.ajax({
-          url: this.form.url,
+          url: this.form.endpoint.url,
           type: this.form.verb,
-          dataType: 'json',
+          dataType: this.form.dataType,
           data: bodyData,
           success: function (gqlresponse) {
             var schema = gqlresponse.data.__schema;
@@ -273,6 +277,7 @@ var App = new Vue({
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", auth);
             xhr.setRequestHeader("Content-Type", contentType);
+            xhr.setRequestHeader("Accept", accept);
           }
         }).fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;
