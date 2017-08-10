@@ -63,7 +63,7 @@ function zoomToSelected(node){
     
     var nodeBox = node.elem.getBBox();
 
-    var scale = Math.max(1, Math.min(2, 0.9 / Math.max(nodeBox.width / width, nodeBox.height / height))),
+    var scale = Math.max(1, Math.min(1.5, 0.9 / Math.max(nodeBox.width / width, nodeBox.height / height))),
       translate = [(width / 2 - node.x * scale), (height / 2 - node.y * scale)];
       interpolateZoom(translate,scale);
 }
