@@ -284,7 +284,7 @@ var App = new Vue({
           });
         })
         .always(function (jqXHR, textStatus, errorThrown) {
-          if (textStatus.status == 200) {
+          if (jqXHR.status == 200) {
               var schema = gqlresponse.data.__schema;
               store.commit('dataLoad', schema);
               resetGraph();
