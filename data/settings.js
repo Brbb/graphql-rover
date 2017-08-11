@@ -21,6 +21,17 @@ var settings = {
             "useIntrospectionQuery": false,
             "requestBodyType": 'text',
 
+        },
+        {
+            "name": "GraphQL Europe Conference",
+            "url": "https://graphql-europe.org/graphql",
+            "auth": '',
+            "verb": 'POST',
+            "accept": '*/*',
+            "contentType": 'application/json',
+            "useIntrospectionQuery": true,
+            "requestBodyType": 'application/json',
+
         }
     ]
 }
