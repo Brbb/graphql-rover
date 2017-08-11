@@ -269,14 +269,22 @@ var App = new Vue({
           type: currentEndpoint.verb,
           dataType: currentEndpoint.requestBodyType,
           data: bodyData,
+          crossDomain: true,
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", currentEndpoint.auth);
             xhr.setRequestHeader("Content-Type", currentEndpoint.contentType);
             xhr.setRequestHeader("Accept", currentEndpoint.accept);
           }
-        }).done(function (gqlresponse, xhr, textStatus) {
-
-            if (textStatus.status == 200) {
+        }).done(function (gqlresponse, jqXHR, textStatus) {
+            console.log('Response retrieved with status '+textStatus.status);
+          },)
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          App.$message.error({
+            message: textStatus + ':' + errorThrown
+          });
+        })
+        .always(function (jqXHR, textStatus, errorThrown) {
+          if (textStatus.status == 200) {
               var schema = gqlresponse.data.__schema;
               store.commit('dataLoad', schema);
               resetGraph();
@@ -290,13 +298,7 @@ var App = new Vue({
                 message: 'Ops: problem occurred while loading the graph (Code:' + textStatus.status + ')'
               });
             }
-            App.fullscreenLoading = false;
-          },)
-        .fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;
-          App.$message.error({
-            message: textStatus + ':' + errorThrown
-          });
         });
       }
       else {
