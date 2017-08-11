@@ -289,6 +289,7 @@ var App = new Vue({
 
               if (textStatus == "success") {
                 schema = gqlresponse.data.__schema;
+                buildGraph(schema)
               }
               else {
                 if (gqlresponse.status != 200) {
@@ -298,12 +299,7 @@ var App = new Vue({
                 }
                 else {
                   schema = JSON.parse(jqXHR.responseText).data.__schema;
-                  store.commit('dataLoad', schema);
-                  resetGraph();
-                  loadGraph();
-                  App.$message.success({
-                    message: 'Graph loaded correctly'
-                  });
+                  buildGraph(schema);
                 }
               }
             }
@@ -322,10 +318,18 @@ var App = new Vue({
           message: 'Endpoint not configured!'
         });
       }
+
+      function buildGraph(schema) {
+        store.commit('dataLoad', schema);
+        resetGraph();
+        loadGraph();
+        App.$message.success({
+          message: 'Graph loaded correctly'
+        });
+      }
     }
   },
   mounted() {
     this.requestGraphQL();
   }
 });
-
