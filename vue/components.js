@@ -134,10 +134,10 @@ var GraphPanelComponent = Vue.component('graph-panel', {
   props: [""],
   template:
   '<div id="graph-panel" class="svg-panel">' +
-  '<div class="btn-group zoom-control" role="group" aria-label="Default button group">' +
-  '<button id="zoom_in" onclick="zoomClick(this)" type="button" class="btn btn-default zoom-btn-control">+</button>' +
-  '<button onclick="setInitialPositionAndZoom()" type="button" class="btn btn-default zoom-btn-control">Reset</button>' +
-  '<button id="zoom_out" onclick="zoomClick(this)" type="button" class="btn btn-default zoom-btn-control">-</button>' +
+  '<div class="el-button-group zoom-control" role="group" aria-label="Default button group">' +
+  '<button id="zoom_in" onclick="zoomClick(this)" type="button" class="el-button">+</button>' +
+  '<button onclick="setInitialPositionAndZoom()" type="button" class="el-button">Reset</button>' +
+  '<button id="zoom_out" onclick="zoomClick(this)" type="button" class="el-button">-</button>' +
   '</div><svg id="svg-canvas" v-on:click="resetPanel"></svg></div>',
   methods: {
     resetPanel: function (event) {
@@ -219,15 +219,16 @@ var App = new Vue({
     fullscreenLoading: false,
     dialogFormVisible: false,
     httpVerbs: ['GET', 'POST'],
+    contentTypes: ['application/graphql','application/json'],
+    requestBodyTypes: ['application/graphql','application/json','text'],
     form: {
       endpoint: settings.endpoints[0],
-      //url: settings.endpoints[0].url,
-      auth: '',
-      verb: 'POST',
-      accept: '*/*',
-      contentType: 'application/graphql',
-      useIntrospectionQuery: true,
-      dataType: '',
+      // auth: '',
+      // verb: 'POST',
+      // accept: '*/*',
+      // contentType: 'application/graphql',
+      // useIntrospectionQuery: true,
+      // dataType: '', 
     },
   },
   components: {
@@ -252,20 +253,19 @@ var App = new Vue({
 
     },
     requestGraphQL() {
-      var auth = this.form.auth;
-      var contentType = this.form.contentType;
-      var accept = this.form.accept;
+      var currentEndpoint = this.form.endpoint;
       var bodyData = '';
-      if (this.form.useIntrospectionQuery && this.form.verb == 'POST')
-        bodyData = introspectionQuery;
 
-      if (this.form.endpoint != null && this.form.endpoint.url != '') {
+      if (currentEndpoint != null && currentEndpoint.url != '') {
         this.fullscreenLoading = true;
 
+        if (currentEndpoint.useIntrospectionQuery && currentEndpoint.verb == 'POST')
+        bodyData = introspectionQuery;
+
         $.ajax({
-          url: this.form.endpoint.url,
-          type: this.form.verb,
-          dataType: this.form.dataType,
+          url: currentEndpoint.url,
+          type: currentEndpoint.verb,
+          dataType: currentEndpoint.dataType,
           data: bodyData,
           success: function (gqlresponse) {
             var schema = gqlresponse.data.__schema;
@@ -275,9 +275,9 @@ var App = new Vue({
             App.fullscreenLoading = false;
           },
           beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", auth);
-            xhr.setRequestHeader("Content-Type", contentType);
-            xhr.setRequestHeader("Accept", accept);
+            xhr.setRequestHeader("Authorization", currentEndpoint.auth);
+            xhr.setRequestHeader("Content-Type", currentEndpoint.contentType);
+            xhr.setRequestHeader("Accept", currentEndpoint.accept);
           }
         }).fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;

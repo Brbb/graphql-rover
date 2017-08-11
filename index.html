@@ -5,7 +5,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script>
+  if (typeof module === 'object') { window.module = module; module = undefined; }
+
+</script>
 
 <script src="data/settings.js"></script>
 <script src="js/d3.min.js" charset="utf-8"></script>
@@ -23,7 +26,10 @@
 <script src="data/graphQLQuery.js"></script>
 <!--<script src="data/githubdata.js"></script>-->
 
-<script>if (window.module) module = window.module;</script>
+<script>
+  if (window.module) module = window.module;
+
+</script>
 
 <main id="doc_root">
   <div id="gqle" class="gql-explorer" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="Loading GraphQL schema...">
@@ -32,7 +38,7 @@
         <div class="title">
           <img src="img/logo.svg" width="32" height="32"></img>
           <span style="font-weight: 400;">GraphQL</span><span> Rover</span>
-          <el-button class="el-button-gqlr float-right" icon="setting" size="small" @click="dialogFormVisible = true"></el-button>
+          <el-button class="float-right" :plain="true" type="info" icon="setting" size="small" @click="dialogFormVisible = true"></el-button>
         </div>
         <div>
           <el-autocomplete class="inline-input" icon="search" v-model="autocompleteState" :fetch-suggestions="querySearch" placeholder="Search Type or Field"
@@ -54,24 +60,33 @@
           <el-input v-model="form.endpoint.url" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="Authorization">
-          <el-input v-model="form.auth"></el-input>
+          <el-input v-model="form.endpoint.auth"></el-input>
         </el-form-item>
         <el-form-item label="Accept">
-          <el-input v-model="form.accept"></el-input>
+          <el-input v-model="form.endpoint.accept"></el-input>
         </el-form-item>
         <el-form-item label="Content Type">
-          <el-input v-model="form.contentType"></el-input>
-        </el-form-item>
-        <el-form-item label="Data Type (Body)">
-          <el-input v-model="form.dataType"></el-input>
-        </el-form-item>
-        <el-form-item label="HTTP Verb">
-          <el-select v-model="form.verb" placeholder="HTTP Method">
+          <el-col :span="8">
+          <el-select v-model="form.endpoint.contentType" placeholder="Content Type">
+            <el-option v-for="contentType in contentTypes" :key="contentType" :label="contentType" :value="contentType"></el-option>
+          </el-select>
+          </el-col>
+        <el-col :span="2" :offset="2">
+          <label class="el-form-item__label">Method</label>
+        </el-col>
+          <el-col :span="8">
+          <el-select v-model="form.endpoint.verb" placeholder="HTTP Method">
             <el-option v-for="verb in httpVerbs" :key="verb" :label="verb" :value="verb"></el-option>
+          </el-select>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="Request Body">
+          <el-select v-model="form.endpoint.dataType" placeholder="Type">
+            <el-option v-for="requestBodyType in requestBodyTypes" :key="requestBodyType" :label="requestBodyType" :value="requestBodyType"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-checkbox v-model="form.useIntrospectionQuery">Use Introspection Query</el-checkbox>
+          <el-checkbox v-model="form.endpoint.useIntrospectionQuery">Use Introspection Query</el-checkbox>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -85,7 +100,6 @@
 <script src="vue/components.js"></script>
 <script src="js/zoom.js"></script>
 <script id="core">
-  
   var svg, render, g;
 
 
@@ -243,4 +257,5 @@
 
   var mouseDownX = -1;
   var mouseDownY = -1;
+
 </script>
