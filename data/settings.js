@@ -8,7 +8,7 @@ var settings = {
             "accept": '*/*',
             "contentType": 'application/graphql',
             "useIntrospectionQuery": true,
-            "dataType": '',
+            "requestBodyType": '',
 
         },
         {
@@ -19,7 +19,7 @@ var settings = {
             "accept": 'application/json',
             "contentType": 'application/json',
             "useIntrospectionQuery": false,
-            "dataType": 'text',
+            "requestBodyType": 'text',
 
         }
     ]

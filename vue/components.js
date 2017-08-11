@@ -223,12 +223,6 @@ var App = new Vue({
     requestBodyTypes: ['application/graphql','application/json','text'],
     form: {
       endpoint: settings.endpoints[0],
-      // auth: '',
-      // verb: 'POST',
-      // accept: '*/*',
-      // contentType: 'application/graphql',
-      // useIntrospectionQuery: true,
-      // dataType: '', 
     },
   },
   components: {
@@ -265,7 +259,7 @@ var App = new Vue({
         $.ajax({
           url: currentEndpoint.url,
           type: currentEndpoint.verb,
-          dataType: currentEndpoint.dataType,
+          dataType: currentEndpoint.requestBodyType,
           data: bodyData,
           success: function (gqlresponse) {
             var schema = gqlresponse.data.__schema;

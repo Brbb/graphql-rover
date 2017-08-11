@@ -81,7 +81,7 @@
           </el-col>
         </el-form-item>
         <el-form-item label="Request Body">
-          <el-select v-model="form.endpoint.dataType" placeholder="Type">
+          <el-select v-model="form.endpoint.requestBodyType" placeholder="Type">
             <el-option v-for="requestBodyType in requestBodyTypes" :key="requestBodyType" :label="requestBodyType" :value="requestBodyType"></el-option>
           </el-select>
         </el-form-item>
