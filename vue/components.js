@@ -219,8 +219,8 @@ var App = new Vue({
     fullscreenLoading: false,
     dialogFormVisible: false,
     httpVerbs: ['GET', 'POST'],
-    contentTypes: ['application/graphql','application/json'],
-    requestBodyTypes: ['application/graphql','application/json','text'],
+    contentTypes: ['application/graphql', 'application/json'],
+    requestBodyTypes: ['application/graphql', 'application/json', ''],
     form: {
       endpoint: settings.endpoints[0],
     },
@@ -253,19 +253,38 @@ var App = new Vue({
       if (currentEndpoint != null && currentEndpoint.url != '') {
         this.fullscreenLoading = true;
 
-        if (currentEndpoint.useIntrospectionQuery && currentEndpoint.verb == 'POST')
-        bodyData = introspectionQuery;
+        if (currentEndpoint.useIntrospectionQuery && currentEndpoint.verb == 'POST') {
+          if (currentEndpoint.requestBodyType == 'application/json') {
+            bodyData = jsonIntrospectionQuery;
+            console.log("Sending json introspection query...")
+          }
+          else {
+            bodyData = introspectionQuery;
+            console.log("Sending GraphQL introspection query...")
+          }
+        }
 
         $.ajax({
           url: currentEndpoint.url,
           type: currentEndpoint.verb,
           dataType: currentEndpoint.requestBodyType,
           data: bodyData,
-          success: function (gqlresponse) {
-            var schema = gqlresponse.data.__schema;
-            store.commit('dataLoad', schema);
-            resetGraph();
-            loadGraph();
+          success: function (gqlresponse, xhr, textStatus) {
+
+            if (textStatus.status == 200) {
+              var schema = gqlresponse.data.__schema;
+              store.commit('dataLoad', schema);
+              resetGraph();
+              loadGraph();
+              App.$message.success({
+                message: 'Graph loaded correctly'
+              });
+            }
+            else {
+              App.$message.info({
+                message: 'Ops: problem occurred while loading the graph (Code:' + textStatus.status + ')'
+              });
+            }
             App.fullscreenLoading = false;
           },
           beforeSend: function (xhr) {
@@ -276,7 +295,7 @@ var App = new Vue({
         }).fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;
           App.$message.error({
-            message: textStatus+':'+errorThrown
+            message: textStatus + ':' + errorThrown
           });
         });
       }
