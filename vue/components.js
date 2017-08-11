@@ -298,7 +298,7 @@ var App = new Vue({
                   });
                 }
                 else {
-                  schema = JSON.parse(jqXHR.responseText).data.__schema;
+                  schema = JSON.parse(gqlresponse.responseText).data.__schema;
                   buildGraph(schema);
                 }
               }
