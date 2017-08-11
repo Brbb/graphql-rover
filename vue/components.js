@@ -276,30 +276,46 @@ var App = new Vue({
             xhr.setRequestHeader("Accept", currentEndpoint.accept);
           }
         }).done(function (gqlresponse, jqXHR, textStatus) {
-            console.log('Response retrieved with status '+textStatus.status);
-          },)
-        .fail(function (jqXHR, textStatus, errorThrown) {
-          App.$message.error({
-            message: textStatus + ':' + errorThrown
+          console.log('Response retrieved with status ' + textStatus.status);
+        }, )
+          .fail(function (jqXHR, textStatus, errorThrown) {
+            App.$message.error({
+              message: textStatus + ':' + errorThrown
+            });
+          })
+          .always(function (gqlresponse, textStatus, jqXHR) {
+            try {
+              var schema = null;
+
+              if (textStatus == "success") {
+                schema = gqlresponse.data.__schema;
+              }
+              else {
+                if (gqlresponse.status != 200) {
+                  App.$message.info({
+                    message: 'Ops: problem occurred while loading the graph (Code:' + textStatus.status + ')'
+                  });
+                }
+                else {
+                  schema = JSON.parse(jqXHR.responseText).data.__schema;
+                  store.commit('dataLoad', schema);
+                  resetGraph();
+                  loadGraph();
+                  App.$message.success({
+                    message: 'Graph loaded correctly'
+                  });
+                }
+              }
+            }
+            catch (err) {
+              App.$message.error({
+                message: err.message
+              });
+            }
+            finally {
+              App.fullscreenLoading = false;
+            }
           });
-        })
-        .always(function (jqXHR, textStatus, errorThrown) {
-          if (jqXHR.status == 200) {
-              var schema = gqlresponse.data.__schema;
-              store.commit('dataLoad', schema);
-              resetGraph();
-              loadGraph();
-              App.$message.success({
-                message: 'Graph loaded correctly'
-              });
-            }
-            else {
-              App.$message.info({
-                message: 'Ops: problem occurred while loading the graph (Code:' + textStatus.status + ')'
-              });
-            }
-          App.fullscreenLoading = false;
-        });
       }
       else {
         this.$message.error({
