@@ -38,7 +38,15 @@
         <div class="title">
           <img src="img/logo.svg" width="32" height="32"></img>
           <span style="font-weight: 400;">GraphQL</span><span> Rover</span>
+          <el-button-group class="float-right">
+          <button type="button" class="el-button el-button--info el-button--small is-plain">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="el-button float-right el-button--info el-button--small is-plain" @click="requestGraphQL();">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
           <el-button class="float-right" :plain="true" type="info" icon="setting" size="small" @click="dialogFormVisible = true"></el-button>
+          </el-button-group>
         </div>
         <div>
           <el-autocomplete class="inline-input" icon="search" v-model="autocompleteState" :fetch-suggestions="querySearch" placeholder="Search Type or Field"

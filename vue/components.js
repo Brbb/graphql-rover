@@ -300,6 +300,9 @@ var App = new Vue({
                 else {
                   schema = JSON.parse(gqlresponse.responseText).data.__schema;
                   buildGraph(schema);
+                  App.$message.warning({
+                    message: 'Check the console or the log'
+                  });
                 }
               }
             }
@@ -324,7 +327,7 @@ var App = new Vue({
         resetGraph();
         loadGraph();
         App.$message.success({
-          message: 'Graph loaded correctly'
+          message: 'Graph built correctly'
         });
       }
     }

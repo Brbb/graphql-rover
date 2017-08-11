@@ -23,7 +23,7 @@ var settings = {
 
         },
         {
-            "name": "GraphQL Europe Conference",
+            "name": "GraphQL Conference",
             "url": "https://graphql-europe.org/graphql",
             "auth": '',
             "verb": 'POST',
