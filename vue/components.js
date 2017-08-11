@@ -269,7 +269,12 @@ var App = new Vue({
           type: currentEndpoint.verb,
           dataType: currentEndpoint.requestBodyType,
           data: bodyData,
-          success: function (gqlresponse, xhr, textStatus) {
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", currentEndpoint.auth);
+            xhr.setRequestHeader("Content-Type", currentEndpoint.contentType);
+            xhr.setRequestHeader("Accept", currentEndpoint.accept);
+          }
+        }).done(function (gqlresponse, xhr, textStatus) {
 
             if (textStatus.status == 200) {
               var schema = gqlresponse.data.__schema;
@@ -286,13 +291,8 @@ var App = new Vue({
               });
             }
             App.fullscreenLoading = false;
-          },
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", currentEndpoint.auth);
-            xhr.setRequestHeader("Content-Type", currentEndpoint.contentType);
-            xhr.setRequestHeader("Accept", currentEndpoint.accept);
-          }
-        }).fail(function (jqXHR, textStatus, errorThrown) {
+          },)
+        .fail(function (jqXHR, textStatus, errorThrown) {
           App.fullscreenLoading = false;
           App.$message.error({
             message: textStatus + ':' + errorThrown
