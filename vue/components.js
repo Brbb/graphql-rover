@@ -233,7 +233,7 @@ var App = new Vue({
     graphPanel: GraphPanelComponent,
   },
   beforeMount : function(){
-    this.form.endpoint = this.$appSettings.endpoints[1]
+    this.form.endpoint = this.$appSettings.endpoints[0]
   },
   methods: {
     querySearch(queryString, cb) {
