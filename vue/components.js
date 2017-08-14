@@ -154,6 +154,7 @@ var GraphPanelComponent = Vue.component('graph-panel', {
   }
 });
 
+
 Vue.component('gqlc-autocomplete-item', {
   functional: true,
   render: function (h, ctx) {
@@ -174,7 +175,7 @@ const store = new Vuex.Store({
   state: {
     type: null,
     graphQLData: {},
-    searchableTypesCollection: []
+    searchableTypesCollection: [],
   },
   getters: {
     getTableDocumentation: state => {
@@ -210,6 +211,8 @@ const store = new Vuex.Store({
   }
 });
 
+Vue.prototype.$appSettings = settings;
+
 var App = new Vue({
   el: '#gqle',
   store,
@@ -222,12 +225,15 @@ var App = new Vue({
     contentTypes: ['application/graphql', 'application/json'],
     requestBodyTypes: ['application/graphql', 'application/json', ''],
     form: {
-      endpoint: settings.endpoints[0],
+      endpoint: null
     },
   },
   components: {
     docComponent: DocumentationPanelComponent,
-    graphPanel: GraphPanelComponent
+    graphPanel: GraphPanelComponent,
+  },
+  beforeMount : function(){
+    this.form.endpoint = this.$appSettings.endpoints[1]
   },
   methods: {
     querySearch(queryString, cb) {
