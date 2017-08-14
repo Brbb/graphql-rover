@@ -1,6 +1,17 @@
 var settings = {
     "endpoints": [
         {
+            "name": "GraphQL Conference",
+            "url": "https://graphql-europe.org/graphql",
+            "auth": '',
+            "verb": 'POST',
+            "accept": '*/*',
+            "contentType": 'application/json',
+            "useIntrospectionQuery": true,
+            "requestBodyType": 'application/json',
+
+        },
+        {
             "name": "Pokemon Endpoint",
             "url": "http://graph.pokeql.win/?",
             "auth": '',
@@ -20,17 +31,6 @@ var settings = {
             "contentType": 'application/json',
             "useIntrospectionQuery": false,
             "requestBodyType": 'text',
-
-        },
-        {
-            "name": "GraphQL Conference",
-            "url": "https://graphql-europe.org/graphql",
-            "auth": '',
-            "verb": 'POST',
-            "accept": '*/*',
-            "contentType": 'application/json',
-            "useIntrospectionQuery": true,
-            "requestBodyType": 'application/json',
 
         }
     ]
