@@ -20,7 +20,6 @@ Generate a navigable representation of the underlying schema through the [intros
 Check the [Demo](https://brbb.github.io/graphql-rover/) based on the _GraphQL Pokemon API_, allow `HTTP` scripts execution or change the endpoint from the side panel.
 
 ## Quick start
-Description + video
 
 1. Setup the endpoint
 
