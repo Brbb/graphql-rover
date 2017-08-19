@@ -1,7 +1,12 @@
 var baseEntities = ["Boolean","Int","String","Float","ID"];
+var filteredTypes = ["DateTime"];
 
 function isBaseEntity(entityName){
      return entityName.startsWith("__") || baseEntities.indexOf(entityName) > -1
+}
+
+function isFilteredEntity(entityName){
+    return filteredTypes.indexOf(entityName) > -1;
 }
 
 function initDragCapabilities(g,svg){

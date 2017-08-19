@@ -303,3 +303,8 @@ stroke-dasharray: 5 5;
   stroke: currentColor;
   fill: currentColor;
 }
+
+.input-new-tag{
+  width: 85px;
+  border: transparent !important;
+}

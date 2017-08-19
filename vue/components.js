@@ -227,13 +227,14 @@ var App = new Vue({
     form: {
       endpoint: null
     },
+    inputFilteredType: '',
   },
   components: {
     docComponent: DocumentationPanelComponent,
     graphPanel: GraphPanelComponent,
   },
   beforeMount : function(){
-    this.form.endpoint = this.$appSettings.endpoints[0]
+    this.form.endpoint = this.$appSettings.endpoints[1]
   },
   methods: {
     querySearch(queryString, cb) {
@@ -336,6 +337,17 @@ var App = new Vue({
           message: 'Graph built correctly'
         });
       }
+    },
+    handleClose(filteredType) {
+      filteredTypes.splice(filteredTypes.indexOf(filteredType), 1);
+    },
+
+    handleInputConfirm() {
+      let inputFilteredType = this.inputFilteredType;
+      if (inputFilteredType) {
+        filteredTypes.push(inputFilteredType);
+      }
+      this.inputFilteredType = '';
     }
   },
   mounted() {

@@ -42,9 +42,6 @@
           <img src="img/logo.svg" width="32" height="32"></img>
           <span style="font-weight: 400;">GraphQL</span><span> Rover</span>
           <el-button-group class="float-right">
-            <button type="button" class="el-button el-button--info el-button--small is-plain">
-            <i class="fa fa-filter" aria-hidden="true"></i>
-          </button>
             <button type="button" class="el-button float-right el-button--info el-button--small is-plain" @click="requestGraphQL();">
             <i class="fa fa-refresh" aria-hidden="true"></i>
           </button>
@@ -55,6 +52,26 @@
           <el-autocomplete class="inline-input" icon="search" v-model="autocompleteState" :fetch-suggestions="querySearch" placeholder="Search Type or Field"
             @select="handleSelect" :on-icon-click="handleSearchIconClick" custom-item="gqlc-autocomplete-item" popper-class="gqlc-autocomplete-style">
           </el-autocomplete>
+        </div>
+        <div>
+            <el-tag style="margin-top:5px;margin-right:2px;margin-bottom:2px;"
+            :key="filteredType"
+            v-for="filteredType in filteredTypes"
+            :closable="true"
+            :close-transition="false"
+            @close="handleClose(filteredType)"
+          >
+          {{filteredType}}
+          </el-tag>
+          <el-input
+            class="input-new-tag"
+            placeholder="+ New Filter"
+            v-model="inputFilteredType"
+            size="mini"
+            @keyup.enter.native="handleInputConfirm"
+            @blur="handleInputConfirm"
+          >
+          </el-input>
         </div>
         <component :is="dataView" vbind:doc="store.getters.getTableDocumentation"></component>
       </div>
@@ -143,7 +160,7 @@
 
     store.getters.getGraphQLData.types.forEach(function (type) {
 
-      if (!isBaseEntity(type.name)) {
+      if (!isBaseEntity(type.name)  && !isFilteredEntity(type.name)) {
         var component = new TableComponent({
           propsData: {
             header: type.name,
@@ -164,7 +181,7 @@
           type.fields.forEach(function (field) {
 
             var fieldTypeName = getNestedType(field.type);
-            if (fieldTypeName != null && !isBaseEntity(fieldTypeName))
+            if (fieldTypeName != null && !isBaseEntity(fieldTypeName) && !isFilteredEntity(fieldTypeName))
               g.setEdge(type.name, fieldTypeName);
 
 
@@ -173,7 +190,7 @@
               field.args.forEach(function (arg) {
 
                 var argTypeName = getNestedType(arg.type);
-                if (argTypeName != null && !isBaseEntity(argTypeName))
+                if (argTypeName != null && !isBaseEntity(argTypeName) && !isFilteredEntity(argTypeName))
                   g.setEdge(type.name, argTypeName, {
                     //label: arg.name,
                     //labelpos: 'l',
@@ -190,7 +207,7 @@
           type.inputFields.forEach(function (inputField) {
 
             var inputFieldTypeName = getNestedType(inputField.type);
-            if (inputFieldTypeName != null && !isBaseEntity(inputFieldTypeName))
+            if (inputFieldTypeName != null && !isBaseEntity(inputFieldTypeName) && !isFilteredEntity(inputFieldTypeName))
               g.setEdge(type.name, inputFieldTypeName);
           });
         }
