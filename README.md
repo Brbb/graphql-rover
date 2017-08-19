@@ -48,12 +48,15 @@ $ electron .
 Run the GraphQL Rover.app (OSX electron package only)
 
 ## Features
+- [x] Endpoint selection and configuration
+- [ ] Save configuration (locally/remotely)
 - [x] Drag nodes
 - [x] Pan & Zoom
 - [x] Zoom on selection
 - [x] Navigate clicking on Type-links inside the node or the documentation panel
 - [x] Type Documentation
 - [x] Type & field search
+- [x] Type & field filter for a cleaner graph
 - [x] Interface / Enumerable / Types easy identification
 - [x] Relationships edges with UML-like semantic
 - [x] Configure GraphQL endpoint
