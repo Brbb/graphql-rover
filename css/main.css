@@ -106,9 +106,8 @@ body{
     max-height: 100vh;
 }
 
-.zoom-btn-control{
-    background: rgb(53,59,88);
-    color: white;
+.zoom-control{
+    vertical-align: top;
 }
 
 .fixed-panel-head {
