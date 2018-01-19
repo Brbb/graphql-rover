@@ -223,7 +223,7 @@ var App = new Vue({
     dialogFormVisible: false,
     httpVerbs: ['GET', 'POST'],
     contentTypes: ['application/graphql', 'application/json'],
-    requestBodyTypes: ['application/graphql', 'application/json', ''],
+    requestBodyTypes: ['application/graphql', 'application/json', 'text/plain'],
     form: {
       endpoint: null
     },
