@@ -1,14 +1,14 @@
 var settings = {
     "endpoints": [
         {
-            "name": "AirBnB",
-            "url": "https://airbnb.now.sh/",
+            "name": "PokeQL",
+            "url": "https://pokeql.com/v1",
             "auth": '',
             "verb": 'POST',
             "accept": '*/*',
-            "contentType": 'application/graphql',
+            "contentType": 'application/json',
             "useIntrospectionQuery": true,
-            "requestBodyType": 'text/plain',
+            "requestBodyType": 'application/json',
         }
     ]
 }
