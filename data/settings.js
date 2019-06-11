@@ -1,8 +1,8 @@
 var settings = {
     "endpoints": [
         {
-            "name": "PokeQL",
-            "url": "https://pokeql.com/v1",
+            "name": "World Cup",
+            "url": "https://worldcup-graphql.now.sh/",
             "auth": '',
             "verb": 'POST',
             "accept": '*/*',
