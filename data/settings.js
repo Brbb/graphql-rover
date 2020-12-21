@@ -1,8 +1,8 @@
 var settings = {
     "endpoints": [
         {
-            "name": "World Cup",
-            "url": "https://worldcup-graphql.now.sh/",
+            "name": "Space X",
+            "url": "https://api.spacex.land/graphql/",
             "auth": '',
             "verb": 'POST',
             "accept": '*/*',
