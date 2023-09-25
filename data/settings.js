@@ -2,7 +2,7 @@ var settings = {
     "endpoints": [
         {
             "name": "Space X",
-            "url": "https://api.spacex.land/graphql/",
+            "url": "https://main--spacex-l4uc6p.apollographos.net/graphql",
             "auth": '',
             "verb": 'POST',
             "accept": '*/*',
